@@ -2,7 +2,7 @@ const WINDOW_MS = 60 * 1000;
 const MAX_REQUESTS_PER_WINDOW = 30;
 const requestBuckets = new Map();
 
-exports.agentRateLimit = (req, res, next) => {
+const rateLimit = (req, res, next) => {
   const key = req.userId || req.ip || 'anonymous';
   const now = Date.now();
   const existingBucket = requestBuckets.get(key);
@@ -24,3 +24,5 @@ exports.agentRateLimit = (req, res, next) => {
   existingBucket.count += 1;
   return next();
 };
+
+module.exports = { rateLimit };
