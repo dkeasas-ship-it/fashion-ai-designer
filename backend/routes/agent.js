@@ -9,8 +9,8 @@ const {
 
 const router = express.Router();
 
-router.post('/delegate', protect, agentRateLimit, delegateTask);
-router.get('/tasks', protect, agentRateLimit, listUserTasks);
-router.get('/tasks/:taskId', protect, agentRateLimit, getTaskStatus);
+router.post('/delegate', agentRateLimit, protect, delegateTask);
+router.get('/tasks', agentRateLimit, protect, listUserTasks);
+router.get('/tasks/:taskId', agentRateLimit, protect, getTaskStatus);
 
 module.exports = router;
