@@ -1,2 +1,2 @@
-    # fashion-ai-designer
+lovable    # fashion-ai-designer
 AI-powered custom dress design
