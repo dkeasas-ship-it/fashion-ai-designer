@@ -41,6 +41,9 @@ app.use('/api/designs', require('./routes/designs'));
 // AI Routes
 app.use('/api/ai', require('./routes/ai'));
 
+// Agent Routes
+app.use('/api/agent', require('./routes/agent'));
+
 // AR Routes
 app.use('/api/ar', require('./routes/ar'));
 

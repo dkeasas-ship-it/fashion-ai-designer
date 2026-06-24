@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
 
-const apiClient = axios.create({
+export const apiClient = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json'
@@ -72,5 +72,8 @@ export const orderService = {
   getOrderById: (id) => apiClient.get(`/orders/${id}`),
   updateOrderStatus: (id, data) => apiClient.put(`/orders/${id}/status`, data)
 }
+
+
+export { agentService } from './agentService'
 
 export default apiClient
