@@ -1,8 +1,9 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { useNotification } from '../hooks/useNotification';
+import DesignCustomizationPanel from '../components/DesignCustomizationPanel';
 
 export default function DesignDetailsPage({ designId }) {
-  const { success, error: showError } = useNotification();
+  const { success } = useNotification();
   const printRef = useRef(null);
 
   const [design] = useState({
@@ -72,6 +73,16 @@ export default function DesignDetailsPage({ designId }) {
     }
   });
 
+  const [customization, setCustomization] = useState({
+    baseColor: '#F8F2E9',
+    accentColor: '#C8A24A',
+    colorPalette: ['#F8F2E9', '#C8A24A', '#111111'],
+    fabricType: 'ساتان',
+    clientDescription: 'أرغب في فستان ملكي أنيق مع خطوط أنيقة، تفاصيل خفيفة، وملمس فاخر مناسب للمناسبة الرسمية.',
+    styleDirection: 'أنثوي ملكي',
+    complexity: 'متوازن'
+  });
+
   const totalDays = useMemo(() => {
     const start = new Date(design.orderInfo.orderDate);
     const end = new Date(design.orderInfo.deliveryDate);
@@ -99,6 +110,13 @@ export default function DesignDetailsPage({ designId }) {
       `Neckline: ${design.dressDetails.neckline}`,
       `Fabric: ${design.dressDetails.fabric}`,
       `Fabric Quantity: ${design.dressDetails.fabricQuantity} ${design.dressDetails.fabricUnit}`,
+      '',
+      'Customization',
+      `Base Color: ${customization.baseColor}`,
+      `Accent Color: ${customization.accentColor}`,
+      `Fabric: ${customization.fabricType}`,
+      `Style: ${customization.styleDirection}`,
+      `Client Description: ${customization.clientDescription}`,
       '',
       'Measurements',
       `Bust: ${design.measurements.bust}`,
@@ -132,34 +150,67 @@ export default function DesignDetailsPage({ designId }) {
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+        <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">تفاصيل الفستان</h1>
             <p className="text-gray-600">صفحة جاهزة للطباعة والخياطة مع جميع المعلومات والقياسات والارشادات</p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <button onClick={handlePrint} className="bg-blue-600 text-white px-4 py-2 rounded-lg">طباعة</button>
-            <button onClick={handleDownloadText} className="bg-green-600 text-white px-4 py-2 rounded-lg">تنزيل نصي</button>
+            <button onClick={handlePrint} className="rounded-lg bg-blue-600 px-4 py-2 text-white">طباعة</button>
+            <button onClick={handleDownloadText} className="rounded-lg bg-green-600 px-4 py-2 text-white">تنزيل نصي</button>
           </div>
         </div>
 
-        <div ref={printRef} className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8 print:shadow-none print:border-0">
-          <div className="border-b pb-6 mb-6">
-            <div className="flex flex-col md:flex-row justify-between gap-4">
+        <div className="mb-8">
+          <DesignCustomizationPanel preferences={customization} onChange={setCustomization} />
+        </div>
+
+        <div ref={printRef} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm print:border-0 print:shadow-none md:p-8">
+          <div className="mb-6 border-b pb-6">
+            <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900">{design.name}</h2>
-                <p className="text-gray-600 mt-2">{design.description}</p>
+                <p className="mt-2 text-gray-600">{design.description}</p>
               </div>
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-900">
+              <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
                 <div className="font-semibold">رقم التصميم</div>
                 <div className="font-mono">{design.designId}</div>
               </div>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <section className="bg-gray-50 rounded-xl p-4">
-              <h3 className="font-semibold text-gray-900 mb-3">معلومات العميل</h3>
+          <section className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4">
+            <div className="mb-3 flex items-center gap-2">
+              <span className="text-base">👑</span>
+              <h3 className="font-semibold text-amber-900">تخصيص ملكي للفستان</h3>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div>
+                <p className="mb-2 text-sm font-semibold text-gray-900">الألوان المختارة</p>
+                <div className="flex flex-wrap gap-2">
+                  {customization.colorPalette.map((color, index) => (
+                    <span key={`${color}-${index}`} className="flex items-center gap-2 rounded-full border border-amber-200 bg-white px-3 py-1 text-sm text-gray-700">
+                      <span className="h-4 w-4 rounded-full border" style={{ backgroundColor: color }} />
+                      {color}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <p className="mb-2 text-sm font-semibold text-gray-900">نوع القماش</p>
+                <p className="text-sm text-gray-700">{customization.fabricType}</p>
+                <p className="mt-2 text-sm font-semibold text-gray-900">الأسلوب</p>
+                <p className="text-sm text-gray-700">{customization.styleDirection}</p>
+              </div>
+            </div>
+            <div className="mt-4 rounded-xl border border-amber-200 bg-white/70 p-3 text-sm leading-6 text-gray-700">
+              <span className="font-semibold">وصف العميل:</span> {customization.clientDescription}
+            </div>
+          </section>
+
+          <div className="mb-6 grid gap-6 md:grid-cols-2">
+            <section className="rounded-xl bg-gray-50 p-4">
+              <h3 className="mb-3 font-semibold text-gray-900">معلومات العميل</h3>
               <div className="space-y-2 text-sm text-gray-700">
                 <p><span className="font-semibold">الاسم:</span> {design.client.name}</p>
                 <p><span className="font-semibold">الهاتف:</span> {design.client.phone}</p>
@@ -168,8 +219,8 @@ export default function DesignDetailsPage({ designId }) {
               </div>
             </section>
 
-            <section className="bg-gray-50 rounded-xl p-4">
-              <h3 className="font-semibold text-gray-900 mb-3">معلومات الطلب</h3>
+            <section className="rounded-xl bg-gray-50 p-4">
+              <h3 className="mb-3 font-semibold text-gray-900">معلومات الطلب</h3>
               <div className="space-y-2 text-sm text-gray-700">
                 <p><span className="font-semibold">تاريخ الطلب:</span> {design.orderInfo.orderDate}</p>
                 <p><span className="font-semibold">موعد التسليم:</span> {design.orderInfo.deliveryDate}</p>
@@ -180,9 +231,9 @@ export default function DesignDetailsPage({ designId }) {
             </section>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <section className="bg-pink-50 rounded-xl p-4">
-              <h3 className="font-semibold text-gray-900 mb-3">تفاصيل الفستان</h3>
+          <div className="mb-6 grid gap-6 md:grid-cols-2">
+            <section className="rounded-xl bg-pink-50 p-4">
+              <h3 className="mb-3 font-semibold text-gray-900">تفاصيل الفستان</h3>
               <div className="space-y-2 text-sm text-gray-700">
                 <p><span className="font-semibold">النوع:</span> {design.dressDetails.type}</p>
                 <p><span className="font-semibold">اللون:</span> {design.dressDetails.color}</p>
@@ -191,14 +242,14 @@ export default function DesignDetailsPage({ designId }) {
                 <p><span className="font-semibold">الرقبة:</span> {design.dressDetails.neckline}</p>
                 <p><span className="font-semibold">النسيج:</span> {design.dressDetails.fabric}</p>
                 <p><span className="font-semibold">الكمية:</span> {design.dressDetails.fabricQuantity} {design.dressDetails.fabricUnit}</p>
-                <ul className="list-disc pr-5 mt-2">
+                <ul className="mt-2 list-disc pr-5">
                   {design.dressDetails.details.map((item, index) => <li key={`${item}-${index}`}>{item}</li>)}
                 </ul>
               </div>
             </section>
 
-            <section className="bg-blue-50 rounded-xl p-4">
-              <h3 className="font-semibold text-gray-900 mb-3">القياسات</h3>
+            <section className="rounded-xl bg-blue-50 p-4">
+              <h3 className="mb-3 font-semibold text-gray-900">القياسات</h3>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-gray-700">
                   <tbody>
@@ -213,27 +264,27 @@ export default function DesignDetailsPage({ designId }) {
                   </tbody>
                 </table>
               </div>
-              <p className="text-sm text-gray-600 mt-3">{design.measurements.additionalNotes}</p>
+              <p className="mt-3 text-sm text-gray-600">{design.measurements.additionalNotes}</p>
             </section>
           </div>
 
-          <section className="rounded-xl border border-red-200 bg-red-50 p-4 mb-6">
-            <h3 className="font-semibold text-red-800 mb-2">تنبيه مهم لاختيار المقاس</h3>
+          <section className="mb-6 rounded-xl border border-red-200 bg-red-50 p-4">
+            <h3 className="mb-2 font-semibold text-red-800">تنبيه مهم لاختيار المقاس</h3>
             <p className="text-sm text-red-700">{design.sizeGuidance}</p>
           </section>
 
-          <section className="rounded-xl border border-blue-200 bg-blue-50 p-4 mb-6">
-            <h3 className="font-semibold text-blue-800 mb-2">إرشادات القياس</h3>
+          <section className="mb-6 rounded-xl border border-blue-200 bg-blue-50 p-4">
+            <h3 className="mb-2 font-semibold text-blue-800">إرشادات القياس</h3>
             <p className="text-sm text-blue-700">{design.measurementInstructions}</p>
           </section>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <section className="bg-gray-50 rounded-xl p-4">
-              <h3 className="font-semibold text-gray-900 mb-3">الألوان والمواد</h3>
-              <div className="flex gap-3 mb-3">
-                <div className="w-8 h-8 rounded-full border" style={{ backgroundColor: design.colors.main }} />
-                <div className="w-8 h-8 rounded-full border" style={{ backgroundColor: design.colors.accent }} />
-                <div className="w-8 h-8 rounded-full border" style={{ backgroundColor: design.colors.embroidery }} />
+          <div className="mb-6 grid gap-6 md:grid-cols-2">
+            <section className="rounded-xl bg-gray-50 p-4">
+              <h3 className="mb-3 font-semibold text-gray-900">الألوان والمواد</h3>
+              <div className="mb-3 flex gap-3">
+                <div className="h-8 w-8 rounded-full border" style={{ backgroundColor: customization.baseColor }} />
+                <div className="h-8 w-8 rounded-full border" style={{ backgroundColor: customization.accentColor }} />
+                <div className="h-8 w-8 rounded-full border" style={{ backgroundColor: '#111111' }} />
               </div>
               <ul className="space-y-2 text-sm text-gray-700">
                 {design.materials.map((material, index) => (
@@ -243,8 +294,8 @@ export default function DesignDetailsPage({ designId }) {
                 ))}
               </ul>
             </section>
-            <section className="bg-gray-50 rounded-xl p-4">
-              <h3 className="font-semibold text-gray-900 mb-3">التكاليف</h3>
+            <section className="rounded-xl bg-gray-50 p-4">
+              <h3 className="mb-3 font-semibold text-gray-900">التكاليف</h3>
               <div className="space-y-2 text-sm text-gray-700">
                 <p><span className="font-semibold">المواد:</span> {design.costs.materials} ريال</p>
                 <p><span className="font-semibold">العمل:</span> {design.costs.labor} ريال</p>
@@ -256,11 +307,11 @@ export default function DesignDetailsPage({ designId }) {
           </div>
 
           <section className="rounded-xl border border-gray-200 p-4">
-            <h3 className="font-semibold text-gray-900 mb-2">ملاحظات الخياط</h3>
-            <p className="text-sm text-gray-700 mb-3">{design.notes.tailorNotes}</p>
-            <h3 className="font-semibold text-gray-900 mb-2">طلبات العميل الخاصة</h3>
+            <h3 className="mb-2 font-semibold text-gray-900">ملاحظات الخياط</h3>
+            <p className="mb-3 text-sm text-gray-700">{design.notes.tailorNotes}</p>
+            <h3 className="mb-2 font-semibold text-gray-900">طلبات العميل الخاصة</h3>
             <p className="text-sm text-gray-700">{design.notes.specialRequests}</p>
-            <h3 className="font-semibold text-gray-900 mb-2 mt-3">ملاحظات داخلية</h3>
+            <h3 className="mt-3 mb-2 font-semibold text-gray-900">ملاحظات داخلية</h3>
             <p className="text-sm text-gray-700">{design.notes.internalNotes}</p>
           </section>
         </div>
