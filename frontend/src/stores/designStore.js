@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { designService, aiService } from '../services/api'
+import { designService, aiService, agentService } from '../services/api'
 
 export const useDesignStore = create((set) => ({
   designs: [],
@@ -41,9 +41,47 @@ export const useDesignStore = create((set) => ({
   generateDesignWithAI: async (designId, prompt) => {
     set({ isLoading: true, error: null })
     try {
-      const response = await aiService.generateDesign({ designId, prompt })
-      set({ currentDesign: response.design, isLoading: false })
-      return response
+      const delegationResponse = await aiService.generateDesign({ designId, prompt })
+      const { taskId } = delegationResponse
+
+      const taskResponse = await new Promise((resolve, reject) => {
+        let stopPolling = () => {}
+
+        stopPolling = agentService.pollTaskStatus(taskId, (statusResponse) => {
+          const task = statusResponse?.task
+
+          if (!task) {
+            return
+          }
+
+          if (task.status === 'completed') {
+            stopPolling()
+            resolve(statusResponse)
+          }
+
+          if (task.status === 'failed') {
+            stopPolling()
+            reject(new Error(task.error || 'AI generation failed'))
+          }
+        })
+      })
+
+      const generatedDesign = taskResponse.task?.result?.design || null
+
+      set((state) => ({
+        designs: generatedDesign
+          ? state.designs.some((design) => design._id === generatedDesign._id)
+            ? state.designs.map((design) => design._id === generatedDesign._id ? generatedDesign : design)
+            : [...state.designs, generatedDesign]
+          : state.designs,
+        currentDesign: generatedDesign || state.currentDesign,
+        isLoading: false
+      }))
+
+      return {
+        taskId,
+        ...taskResponse.task?.result
+      }
     } catch (error) {
       set({ error: error.message, isLoading: false })
       throw error
