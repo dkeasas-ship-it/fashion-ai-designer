@@ -1,0 +1,26 @@
+{
+  "name": "fashion-ai-designer-backend",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "jest --passWithNoTests",
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "lint": "echo \"No lint script configured\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "helmet": "^8.2.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.7.2"
+  },
+  "devDependencies": {
+    "jest": "^30.4.2"
+  }
+}

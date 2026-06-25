@@ -17,6 +17,18 @@ const designCollections = [
         description: 'تصميم بسيط لكنه فاخر مع خط رقبة أنيق.',
         image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
         tags: ['مخمل', 'سادة', 'أنيق']
+      },
+      {
+        name: 'فستان الزفاف الكلاسيكي الفاخر',
+        description: 'قصة كلاسيكية راقية مع أكمام ناعمة وتفاصيل مطرزة بخيوط دقيقة تناسب حفلات الزفاف الرسمية.',
+        image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80',
+        tags: ['كلاسيكي', 'تطريز راقٍ', 'رسمي']
+      },
+      {
+        name: 'فستان زفاف أنيق بلمسة عصرية',
+        description: 'تصميم متوازن يجمع بين الفخامة والبساطة بقماش انسيابي ولمسات أنثوية مميزة دون مبالغة.',
+        image: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80',
+        tags: ['عصري', 'انسيابي', 'فخم']
       }
     ]
   },
@@ -36,6 +48,18 @@ const designCollections = [
         description: 'مظهر براق مع تفاصيل خفيفة وتناسب المناسبات الرسمية.',
         image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80',
         tags: ['تألق', 'نسخة رسمية', 'فخامة']
+      },
+      {
+        name: 'فستان سهرة مخملي راقٍ',
+        description: 'تصميم مخملي أنيق بقصة متزنة يمنح حضوراً قوياً في السهرات الراقية والمناسبات الخاصة.',
+        image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=900&q=80',
+        tags: ['مخملي', 'راقي', 'سهرات']
+      },
+      {
+        name: 'فستان سهرة هادئ بلمسة فاخرة',
+        description: 'تفاصيل بسيطة مدروسة مع خامة ناعمة لتقديم إطلالة احترافية أنيقة تناسب الأذواق المحافظة.',
+        image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
+        tags: ['هادئ', 'ناعم', 'احترافي']
       }
     ]
   },
@@ -55,6 +79,73 @@ const designCollections = [
         description: 'تصميم عملي ومناسب للارتداء اليومي مع لمسة فخمة.',
         image: 'https://images.unsplash.com/photo-1487412912498-0447578fcca8?auto=format&fit=crop&w=900&q=80',
         tags: ['عملية', 'متعددة الاستخدام', 'مناسبة']
+      },
+      {
+        name: 'فستان كاجوال عصري راقٍ',
+        description: 'ستايل يومي أنيق بقصة مريحة وتفاصيل بسيطة تمنح إطلالة مرتبة وعصرية للاستخدام المتكرر.',
+        image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80',
+        tags: ['يومي', 'راحة', 'عصري']
+      },
+      {
+        name: 'فستان عملي بطابع أنثوي',
+        description: 'تصميم مرن يناسب العمل والخروجات اليومية مع توازن بين العملية والأناقة الهادئة.',
+        image: 'https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=900&q=80',
+        tags: ['عملي', 'مرن', 'أنثوي']
+      }
+    ]
+  },
+  {
+    title: 'الأزياء المحتشمة الملكية',
+    subtitle: 'فساتين عصرية مميزة بتصاميم محتشمة فاخرة تجمع الأناقة والوقار',
+    accent: 'from-amber-500 to-yellow-600',
+    cards: [
+      {
+        name: 'فستان ملكي أميري',
+        description: 'فستان محتشم فاخر بأكمام طويلة مزخرفة وتطريز ذهبي ملكي، يمنحك مظهراً أميرياً رفيعاً في المناسبات الكبرى.',
+        image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80',
+        tags: ['ملكي', 'تطريز ذهبي', 'أكمام طويلة', 'فاخر']
+      },
+      {
+        name: 'فستان الأميرة الشرقي',
+        description: 'تصميم عصري يمزج بين الجمال الشرقي والأناقة المحتشمة بقماش حرير ناعم وفتحة رقبة عالية مزدانة بالترتر.',
+        image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=900&q=80',
+        tags: ['شرقي', 'حرير', 'ترتر', 'عصري']
+      },
+      {
+        name: 'فستان الروز المحتشم',
+        description: 'فستان وردي هادئ بقصة واسعة أنيقة وحزام خصر رفيع، مثالي للمناسبات النهارية والسهرات الراقية.',
+        image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80',
+        tags: ['وردي', 'قصة واسعة', 'نهاري', 'أنيق']
+      },
+      {
+        name: 'فستان العباءة العصرية',
+        description: 'عباءة فستان عصرية بتفاصيل دانتيل فاخرة على الأكمام والحافة السفلية، تجمع بين الحشمة والرقي بأسلوب حديث.',
+        image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80',
+        tags: ['دانتيل', 'عصرية', 'محتشمة', 'رقي']
+      },
+      {
+        name: 'فستان الجوهرة الكحلي',
+        description: 'فستان كحلي محتشم بأكمام بيضاء ناعمة وحزام متميز يبرز القوام برقة وأناقة لا مثيل لها في السهرات والحفلات.',
+        image: 'https://images.unsplash.com/photo-1583846717393-dc2412c95ed7?auto=format&fit=crop&w=900&q=80',
+        tags: ['كحلي', 'سهرات', 'حزام', 'مميز']
+      },
+      {
+        name: 'فستان التاج الذهبي',
+        description: 'فستان محتشم بلون ذهبي دافئ مع تطريز يدوي فاخر على الصدر والأكمام، يليق بكل امرأة تستحق التميز الحقيقي.',
+        image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=900&q=80',
+        tags: ['ذهبي', 'تطريز يدوي', 'فاخر', 'ملكي']
+      },
+      {
+        name: 'فستان النخبة المحتشم',
+        description: 'تصميم ملكي بهيكل متزن وخطوط ناعمة مع خامة فاخرة، يمنح إطلالة محتشمة راقية في المناسبات الرسمية.',
+        image: 'https://images.unsplash.com/photo-1495385794356-15371f348c31?auto=format&fit=crop&w=900&q=80',
+        tags: ['محتشم', 'رسمي', 'ملكي']
+      },
+      {
+        name: 'فستان السمو الهادئ',
+        description: 'فستان طويل بقصة انسيابية وتفاصيل دقيقة حول الأكمام والياقة، يجمع الفخامة مع الذوق المحافظ.',
+        image: 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=80',
+        tags: ['طويل', 'ياقة عالية', 'فخامة']
       }
     ]
   }
@@ -78,11 +169,11 @@ const DesignGallerySection = () => {
 
         <div className="grid grid-cols-3 gap-3 rounded-2xl bg-gray-50 p-3 text-center text-sm text-gray-700">
           <div>
-            <div className="text-xl font-bold text-gray-900">50+</div>
+            <div className="text-xl font-bold text-gray-900">64+</div>
             <div>تصميم</div>
           </div>
           <div>
-            <div className="text-xl font-bold text-gray-900">6</div>
+            <div className="text-xl font-bold text-gray-900">7</div>
             <div>مناسبات</div>
           </div>
           <div>
