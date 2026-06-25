@@ -57,6 +57,49 @@ const designCollections = [
         tags: ['عملية', 'متعددة الاستخدام', 'مناسبة']
       }
     ]
+  },
+  {
+    title: 'الأزياء المحتشمة الملكية',
+    subtitle: 'فساتين عصرية مميزة بتصاميم محتشمة فاخرة تجمع الأناقة والوقار',
+    accent: 'from-amber-500 to-yellow-600',
+    cards: [
+      {
+        name: 'فستان ملكي أميري',
+        description: 'فستان محتشم فاخر بأكمام طويلة مزخرفة وتطريز ذهبي ملكي، يمنحك مظهراً أميرياً رفيعاً في المناسبات الكبرى.',
+        image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80',
+        tags: ['ملكي', 'تطريز ذهبي', 'أكمام طويلة', 'فاخر']
+      },
+      {
+        name: 'فستان الأميرة الشرقي',
+        description: 'تصميم عصري يمزج بين الجمال الشرقي والأناقة المحتشمة بقماش حرير ناعم وفتحة رقبة عالية مزدانة بالترتر.',
+        image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=900&q=80',
+        tags: ['شرقي', 'حرير', 'ترتر', 'عصري']
+      },
+      {
+        name: 'فستان الروز المحتشم',
+        description: 'فستان وردي هادئ بقصة واسعة أنيقة وحزام خصر رفيع، مثالي للمناسبات النهارية والسهرات الراقية.',
+        image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80',
+        tags: ['وردي', 'قصة واسعة', 'نهاري', 'أنيق']
+      },
+      {
+        name: 'فستان العباءة العصرية',
+        description: 'عباءة فستان عصرية بتفاصيل دانتيل فاخرة على الأكمام والحافة السفلية، تجمع بين الحشمة والرقي بأسلوب حديث.',
+        image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80',
+        tags: ['دانتيل', 'عصرية', 'محتشمة', 'رقي']
+      },
+      {
+        name: 'فستان الجوهرة الكحلي',
+        description: 'فستان كحلي محتشم بأكمام بيضاء ناعمة وحزام متميز يبرز القوام برقة وأناقة لا مثيل لها في السهرات والحفلات.',
+        image: 'https://images.unsplash.com/photo-1583846717393-dc2412c95ed7?auto=format&fit=crop&w=900&q=80',
+        tags: ['كحلي', 'سهرات', 'حزام', 'مميز']
+      },
+      {
+        name: 'فستان التاج الذهبي',
+        description: 'فستان محتشم بلون ذهبي دافئ مع تطريز يدوي فاخر على الصدر والأكمام، يليق بكل امرأة تستحق التميز الحقيقي.',
+        image: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=900&q=80',
+        tags: ['ذهبي', 'تطريز يدوي', 'فاخر', 'ملكي']
+      }
+    ]
   }
 ];
 
@@ -78,11 +121,11 @@ const DesignGallerySection = () => {
 
         <div className="grid grid-cols-3 gap-3 rounded-2xl bg-gray-50 p-3 text-center text-sm text-gray-700">
           <div>
-            <div className="text-xl font-bold text-gray-900">50+</div>
+            <div className="text-xl font-bold text-gray-900">56+</div>
             <div>تصميم</div>
           </div>
           <div>
-            <div className="text-xl font-bold text-gray-900">6</div>
+            <div className="text-xl font-bold text-gray-900">7</div>
             <div>مناسبات</div>
           </div>
           <div>
