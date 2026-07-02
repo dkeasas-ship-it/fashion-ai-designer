@@ -21,6 +21,6 @@
     "mongoose": "^9.7.2"
   },
   "devDependencies": {
-    "jest": "^30.4.2"
+    "jest": "^29.7.0"
   }
 }
