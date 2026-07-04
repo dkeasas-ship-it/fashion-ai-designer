@@ -14,9 +14,11 @@ jobs:
         with:
           node-version: '20'
       
-      - name: Clear npm cache
-        run: npm cache clean --force
-      
+      - name: Clear npm cache and lock
+        run: |
+          npm cache clean --force
+          cd backend && rm -f package-lock.json
+
       - name: Install dependencies
         run: cd backend && npm install
       
