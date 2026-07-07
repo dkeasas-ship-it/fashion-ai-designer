@@ -6,7 +6,8 @@
     "test": "echo \"No frontend tests configured\"",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "audit": "npm audit"
   },
   "keywords": [],
   "author": "",
