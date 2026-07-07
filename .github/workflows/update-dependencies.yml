@@ -14,22 +14,31 @@ jobs:
         with:
           node-version: '20'
       
-      - name: Clear npm cache and lock
-        run: |
-          npm cache clean --force
-          cd backend && rm -f package-lock.json
+      - name: Clear npm cache
+        run: npm cache clean --force
 
-      - name: Install dependencies
+      - name: Install backend dependencies
         run: cd backend && npm install
+
+      - name: Install frontend dependencies
+        run: cd frontend && npm install
+
+      - name: Audit backend dependencies
+        run: cd backend && npm audit --audit-level=moderate
+        continue-on-error: false
+
+      - name: Audit frontend dependencies
+        run: cd frontend && npm audit --audit-level=moderate
+        continue-on-error: false
       
-      - name: Commit and push updated lockfile
+      - name: Commit and push updated lockfiles
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add backend/package-lock.json
+          git add backend/package-lock.json frontend/package-lock.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore: update lockfile after jest downgrade to 29.7.0"
+            git commit -m "chore: update lockfiles with resolved dependencies and verified audits"
             git push
           fi
